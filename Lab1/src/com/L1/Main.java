@@ -1,3 +1,11 @@
+/**
+ * This is the Compulsory part of Lab1
+ * @author  Petrache Andrei Liviu
+ * @group 2A3
+ * @version 1.0
+ * @since   24 Feb 2022
+ */
+
 package com.L1;
 
 public class Main
