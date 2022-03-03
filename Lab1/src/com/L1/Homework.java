@@ -8,8 +8,8 @@
 
 package com.L1;
 
-import java.util.ArrayList;
 import java.lang.StringBuffer;
+import java.util.LinkedList;
 
 public class Homework
 {
@@ -49,6 +49,7 @@ public class Homework
         }
 
         System.out.printf("n = %d, p = %d\nAlphabet: %s\n", n, p, alphabet);
+        
         /**
          * Create an array of n strings (called words), each word containing exactly p characters from the given alphabet.
          * Display on the screen the generated array.
@@ -137,6 +138,38 @@ public class Homework
         /**
          * Create a data structure (using arrays) that stores the neighbors of each word. Display this data structure on the screen.
          */
+        //Created a linked list of strings to hold the neighbours of each word
+        LinkedList<String>[] wordNeighbours = new LinkedList[n];
+        for(int i = 0; i < n; i++)
+        {
+            //initialised the linked lists
+            wordNeighbours[i] = new LinkedList<String>();
+        }
 
+        //looping through every word
+        //it can be more efficient to check the half above the primary diagonal
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                //if word[i] and word[j] are adjacent
+                if(adjacency[i][j] == true)
+                {
+                    //add word[j] as neighbor of word[i] using the toString method for the StringBuilder
+                    wordNeighbours[i].add(words[j].toString());
+                }
+            }
+        }
+
+        //printing the neighbours
+        for(int i = 0; i < n; i++)
+        {
+            System.out.println("Neighbours of " + words[i] + ":");
+            for(int j = 0; j < wordNeighbours[i].size(); j++)
+            {
+                System.out.printf("%s ", wordNeighbours[i].get(j));
+            }
+            System.out.println("");
+        }
     }
 }
