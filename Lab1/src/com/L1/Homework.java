@@ -55,11 +55,11 @@ public class Homework
          */
 
         //Initialised the array of words
-        StringBuffer[] words = new StringBuffer[n];
+        StringBuilder[] words = new StringBuilder[n];
         for (int i = 0; i < n; i++)
         {
-            //allocating memory for every word
-            words[i] = new StringBuffer();
+            //initialising every word
+            words[i] = new StringBuilder();
         }
 
         //generating random words
@@ -68,15 +68,15 @@ public class Homework
             for(int j = 0; j < p; j++)
             {
                 //random char from alphabet
-                int pos = (int) (Math.random() * 1000000) % alphabet.length();
-                words[i].insert(j, alphabet.charAt(pos));
+                int position = (int) (Math.random() * 1000000) % alphabet.length();
+                words[i].insert(j, alphabet.charAt(position));
             }
         }
 
         //printing the words
-        for(StringBuffer str : words)
+        for(StringBuilder word : words)
         {
-            System.out.printf("%s\n", str);
+            System.out.printf("%s\n", word);
         }
 
         /**
@@ -93,9 +93,6 @@ public class Homework
             }
         }
 
-        //check how many neighbors we have
-        int count = 0;
-
         //Measuring the time taken
         long begin = System.nanoTime();
 
@@ -104,27 +101,39 @@ public class Homework
         {
             for(int j = 0; j < n; j++)
             {
+                //primary diagonal
                 if(i == j)
                     continue;
 
-                //check for neighbourness(?)
-
+                //check for neighbourhoodness
                 //iterating through words[i] characters
                 //and check to see if they exist in words[j]
                 for(int k = 0; k < words[i].length(); k++)
                 {
                     if(words[j].indexOf(  words[i].substring(k,k+1)  ) != -1)
                     {
-                        count++;
                         adjacency[i][j] = true;
+                        adjacency[j][i] = true;
                         break;
                     }
                 }
             }
         }
 
+        //saving current time
         double end = System.nanoTime();
+        //printing the delta between end and begin times, dividing it over 10^9 so the result is in seconds
         System.out.println("Time taken in seconds: " + (end - begin)/1000000000);
+
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                System.out.printf("%b ", adjacency[i][j]);
+            }
+            System.out.println("");
+        }
+
         /**
          * Create a data structure (using arrays) that stores the neighbors of each word. Display this data structure on the screen.
          */
