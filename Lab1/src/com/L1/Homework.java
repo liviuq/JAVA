@@ -133,7 +133,7 @@ public class Homework
             {
                 System.out.printf("%b ", adjacency[i][j]);
             }
-            System.out.println("");
+            System.out.print("\n");
         }
 
         /**
@@ -170,7 +170,7 @@ public class Homework
             {
                 System.out.printf("%s ", wordNeighbours[i].get(j));
             }
-            System.out.println("");
+            System.out.print("\n");
         }
 
         //create an instance of Bonus that takes as parameter
