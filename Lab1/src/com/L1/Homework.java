@@ -10,6 +10,7 @@ package com.L1;
 
 import java.lang.StringBuffer;
 import java.util.LinkedList;
+import com.L1.Bonus;
 
 public class Homework
 {
@@ -153,7 +154,7 @@ public class Homework
             for(int j = 0; j < n; j++)
             {
                 //if word[i] and word[j] are adjacent
-                if(adjacency[i][j] == true)
+                if(adjacency[i][j])
                 {
                     //add word[j] as neighbor of word[i] using the toString method for the StringBuilder
                     wordNeighbours[i].add(words[j].toString());
@@ -171,5 +172,23 @@ public class Homework
             }
             System.out.println("");
         }
+
+        //create an instance of Bonus that takes as parameter
+        //the number of vetices in our graph
+        Bonus bonus = new Bonus(n);
+
+        //populating it's integer neighbour matrix
+        bonus.generateWordIntegerNeighbours(adjacency);
+
+        //running dfs
+
+        //created the visited array
+        boolean[] isVisited = new boolean[n];
+
+        //run dfs from node with index 0 that has no parent
+        bonus.dfs(isVisited, 0, -1);
+
+        //printing the cycle
+        bonus.printCycle();
     }
 }
