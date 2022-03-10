@@ -1,10 +1,10 @@
-package com.L2;
+package room;
 
 public class RoomType
 {
-    enum Type
+    public enum Type
     {
-        LABBORATORY,
+        LABORATORY,
         LECTURE_HALL,
         CLASSROOM
     }
