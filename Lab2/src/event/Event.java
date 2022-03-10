@@ -1,6 +1,5 @@
 package event;
 
-import room.Room;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +10,7 @@ public class Event
     protected int startHour;
     protected int endHour;
     protected int capacity;
+    static int numberOfEvents = 0;
 
     public Event(String name, int startHour, int endHour, int capacity)
     {
@@ -69,6 +69,7 @@ public class Event
                 return false;
         }
         events.add(event);
+        numberOfEvents++;
         return true;
     }
 

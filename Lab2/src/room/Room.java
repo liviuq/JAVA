@@ -7,6 +7,7 @@ public abstract class Room
 {
     protected String name;
     protected int capacity;
+    static int numberOfRooms = 0;
 
     public Room(String name, int capacity)
     {
@@ -49,6 +50,7 @@ public abstract class Room
                 return false;
         }
         rooms.add(room);
+        numberOfRooms++;
         return true;
     }
 
