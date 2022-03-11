@@ -39,6 +39,7 @@ public abstract class Room
 
     /**
      * Adds a room to an existing list of rooms
+     * and checks for duplicates
      * @param room
      * @param rooms
      * @return boolean
@@ -93,6 +94,11 @@ public abstract class Room
                 '}';
     }
 
+    /**
+     * Compares all the members of both objects
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o)
     {

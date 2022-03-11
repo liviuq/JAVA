@@ -4,10 +4,8 @@ import algorithm.Algorithm;
 import algorithm.AndrewsAlgorithm;
 import algorithm.Problem;
 import event.Event;
-import event.EventCapacityComparator;
 import room.Laboratory;
 import room.Room;
-import room.RoomCapacityComparator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,6 @@ package algorithm;
 
 public abstract class Algorithm
 {
-
     public Algorithm()
     {
     }
