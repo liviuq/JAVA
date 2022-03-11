@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 public class EventCapacityComparator implements Comparator<Event>
 {
-
     @Override
     public int compare(Event event1, Event event2)
     {

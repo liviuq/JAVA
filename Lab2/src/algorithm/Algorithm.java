@@ -3,20 +3,16 @@ package algorithm;
 
 public abstract class Algorithm
 {
-    protected Problem problem;
 
-    public Algorithm(Problem problem)
+    public Algorithm()
     {
-        this.problem = problem;
     }
 
     /**
-     *
+     *  This method solves the problem problem and returns a Solution
      * @param problem
-     * @return Solution
      */
-    public Solution solve(Problem problem)
+    public void solve(Problem problem)
     {
-        return null;
     }
 }

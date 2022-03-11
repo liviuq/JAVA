@@ -8,6 +8,8 @@ public abstract class Room
     protected String name;
     protected int capacity;
     static int numberOfRooms = 0;
+    protected int startTime = -1;
+    protected int endTime = -1;
 
     public Room(String name, int capacity)
     {
@@ -52,6 +54,26 @@ public abstract class Room
         rooms.add(room);
         numberOfRooms++;
         return true;
+    }
+
+    public int getStartTime()
+    {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime)
+    {
+        this.startTime = startTime;
+    }
+
+    public int getEndTime()
+    {
+        return endTime;
+    }
+
+    public void setEndTime(int endTime)
+    {
+        this.endTime = endTime;
     }
 
     public static void printRooms(List<Room> rooms)

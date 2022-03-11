@@ -1,5 +1,7 @@
 package com.L2;
 
+import algorithm.Algorithm;
+import algorithm.AndrewsAlgorithm;
 import algorithm.Problem;
 import event.Event;
 import event.EventCapacityComparator;
@@ -8,7 +10,6 @@ import room.Room;
 import room.RoomCapacityComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Homework
@@ -26,19 +27,17 @@ public class Homework
         Event.addEvent(new Event("C1", 8, 10, 15), events);
         Event.addEvent(new Event("C2", 10, 12, 20), events);
         Event.addEvent(new Event("C3", 16, 18, 22), events);
-        Event.addEvent(new Event("C4", 12, 14, 4), events);
-        Event.printEvents(events);
-
-        rooms.sort(new RoomCapacityComparator());
-        events.sort(new EventCapacityComparator());
-        Room.printRooms(rooms);
+        Event.addEvent(new Event("C4", 12, 14, 30), events);
+        Event.addEvent(new Event("C5", 12, 14, 35), events);
         Event.printEvents(events);
 
         Problem pb = new Problem();
         pb.addEvent(events);
         pb.addRoom(rooms);
-        System.out.printf("------------------\n");
-        pb.printEvents();
-        pb.printRooms();
+
+        System.out.print("------------------\n");
+
+        Algorithm myAlgorithm = new AndrewsAlgorithm();
+        myAlgorithm.solve(pb);
     }
 }
