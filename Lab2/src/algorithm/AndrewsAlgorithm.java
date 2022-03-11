@@ -26,9 +26,9 @@ public class AndrewsAlgorithm extends Algorithm
         problem.getRooms().sort(new RoomCapacityComparator());
         problem.getEvents().sort(new EventCapacityComparator());
 
-        for(Room room : problem.getRooms())
+        for(Event event : problem.getEvents())
         {
-            for(Event event : problem.getEvents())
+            for(Room room : problem.getRooms())
             {
                 //if room is not occupied and has enough seats
                 if(room.getStartTime() == -1 && room.getCapacity() >= event.getCapacity())
@@ -44,9 +44,18 @@ public class AndrewsAlgorithm extends Algorithm
                     if(room.getEndTime() != -1 && room.getEndTime() <= event.getStartHour() && room.getCapacity() >= event.getCapacity())
                     {
                         System.out.println(event.getName() + " : " + room.getName());
-                        room.setStartTime(event.getStartHour());
+                        //set the end time to the event end time so the room might be occupied longer
                         room.setEndTime(event.getEndHour());
                         break;
+                    }
+                    else
+                    {
+                        if(event.getEndHour() <= room.getStartTime() && room.getCapacity() >= event.getCapacity())
+                        {
+                            System.out.println(event.getName() + " : " + room.getName());
+                            //modify the start time of the room to hold multiple events
+                            room.setStartTime(event.getStartHour());
+                        }
                     }
                 }
             }
