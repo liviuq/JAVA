@@ -21,12 +21,6 @@ public class Computer extends Node implements Identifiable, Storage
     }
 
     @Override
-    public int getStorageCapacity(int a)
-    {
-        return 88;
-    }
-
-    @Override
     public void setStorageCapacity(int storageCapacity)
     {
         this.storageCapacity = storageCapacity;
@@ -42,5 +36,17 @@ public class Computer extends Node implements Identifiable, Storage
     public void setIpAddress(String ipAddress)
     {
         this.ipAddress = ipAddress;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Computer{" +
+                "ipAddress='" + ipAddress + '\'' +
+                ", storageCapacity=" + storageCapacity +
+                ", name='" + getName() + '\'' +
+                ", macAddress='" + getMacAddress() + '\'' +
+                ", location='" + getLocation() + '\'' +
+                '}';
     }
 }

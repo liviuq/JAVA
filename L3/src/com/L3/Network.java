@@ -4,6 +4,7 @@ import com.L3.node.Node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Network
 {
@@ -46,7 +47,10 @@ public class Network
     {
         for(Node node : nodes)
         {
-            System.out.printf("%s\n", node);
+            for(Map.Entry<Node, Integer> currentNode : node.getNeighborAndCost().entrySet())
+            {
+                System.out.printf("%s--%s %d\n", node.getName(), currentNode.getKey().getName(), currentNode.getValue());
+            }
         }
     }
 }
