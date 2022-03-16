@@ -10,20 +10,20 @@ public class Main {
     public static void main(String[] args)
     {
 	    Network myNetwork = new Network();
-        Node n1 = new Computer("1", "AA:AA:AA:AA", "IS","192.168.0.1", 13);
+        Node n1 = new Computer("1", "AA:AA:AA:AA", "IS","192.168.0.255", 13);
         myNetwork.addNode(n1);
 
-        Node n2 = new Computer("2", "AA:AA:AA:AA", "IS","192.168.0.2", 100);
+        Node n2 = new Computer("2", "AA:AA:AA:AA", "IS","192.168.0.21", 100);
         myNetwork.addNode(n2);
 
         //tested "var", it should not be used here as typing Node does not get any easier than this.
-        var n3 = new Computer("3", "AA:AA:AA:AA", "IS","192.168.0.3", 100);
+        var n3 = new Computer("3", "AA:AA:AA:AA", "IS","192.168.0.423", 100);
         myNetwork.addNode(n3);
 
-        Node n4 = new Computer("4", "AA:AA:AA:AA", "IS","192.168.0.4", 100);
+        Node n4 = new Computer("4", "AA:AA:AA:AA", "IS","192.168.1.4", 100);
         myNetwork.addNode(n4);
 
-        Node n5 = new Computer("5", "AA:AA:AA:AA", "IS","192.168.0.5", 100);
+        Node n5 = new Computer("5", "AA:AA:AA:AA", "IS","192.168.33.5", 100);
         myNetwork.addNode(n5);
 
         Node n6 = new Switch("6", "SW:IT:CH:01", "Iasi, IS");
@@ -52,5 +52,7 @@ public class Main {
 
         Computer c1 = (Computer) n1;
         System.out.println(c1.getStorageCapacity(Size.MB));
+
+        myNetwork.printIdentifiable();
     }
 }

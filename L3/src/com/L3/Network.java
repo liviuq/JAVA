@@ -3,6 +3,7 @@ package com.L3;
 import com.L3.node.Node;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,29 @@ public class Network
             {
                 nodes.remove(node);
             }
+        }
+    }
+
+    public void printIdentifiable()
+    {
+        List<Identifiable> list = new ArrayList<>();
+
+        for(Object object : nodes)
+        {
+            if(object instanceof Identifiable)
+            {
+                list.add((Identifiable) object);
+            }
+        }
+
+        Collections.sort(list, (Identifiable i1, Identifiable i2) ->
+        {
+            return(i1.getIpAddress().compareTo(i2.getIpAddress()));
+        });
+
+        for(Identifiable identifiable : list)
+        {
+            System.out.printf("%s\n", identifiable);
         }
     }
 
