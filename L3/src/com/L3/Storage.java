@@ -7,7 +7,7 @@ public interface Storage
     default int getStorageCapacity(Size size)
     {
         if (size == Size.KB)
-            return getStorageCapacity() * 1000000;
+            return getStorageCapacity() * 1048576;
         else if (size == Size.MB)
             return getStorageCapacity() * 1000;
         else if (size == Size.BYTE)
