@@ -6,4 +6,14 @@ public class Switch extends Node
     {
         super(name, macAddress, location);
     }
+
+    @Override
+    public String toString()
+    {
+        return "Switch{" +
+                "name='" + getName() + '\'' +
+                ", macAddress='" + getMacAddress() + '\'' +
+                ", location='" + getLocation() + '\'' +
+                '}';
+    }
 }

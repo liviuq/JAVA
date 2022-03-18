@@ -1,22 +1,58 @@
 package com.L3;
 
-import com.L3.node.Computer;
-import com.L3.node.NameSortComparator;
+import com.L3.node.*;
 
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Main {
 
     public static void main(String[] args)
     {
 	    Network myNetwork = new Network();
-        myNetwork.addNode(new Computer("1", "AA:AA:AA:AA", "IS","192.168.0.1", 100));
-        myNetwork.addNode(new Computer("5", "AA:AA:AA:AA", "IS","192.168.0.2", 100));
-        myNetwork.addNode(new Computer("3", "AA:AA:AA:AA", "IS","192.168.0.3", 100));
-        myNetwork.addNode(new Computer("10", "AA:AA:AA:AA", "IS","192.168.0.4", 100));
-        myNetwork.addNode(new Computer("0", "AA:AA:AA:AA", "IS","192.168.0.5", 100));
+        Node n1 = new Computer("1", "AA:AA:AA:AA", "IS","192.168.0.255", 16);
+        myNetwork.addNode(n1);
 
-        Collections.sort(myNetwork.getNodes(), new NameSortComparator());
+        Node n2 = new Computer("2", "AA:AA:AA:AA", "IS","192.168.0.21", 100);
+        myNetwork.addNode(n2);
+
+        //tested "var", it should not be used here as typing Node does not get any easier than this.
+        var n3 = new Computer("3", "AA:AA:AA:AA", "IS","192.168.0.423", 100);
+        myNetwork.addNode(n3);
+
+        Node n4 = new Computer("4", "AA:AA:AA:AA", "IS","192.168.1.4", 100);
+        myNetwork.addNode(n4);
+
+        Node n5 = new Computer("5", "AA:AA:AA:AA", "IS","192.168.33.5", 100);
+        myNetwork.addNode(n5);
+
+        Node n6 = new Switch("6", "SW:IT:CH:01", "Iasi, IS");
+        myNetwork.addNode(n6);
+
+        //sorting the list with a lambda
+        myNetwork.getNodes().sort((Node o1, Node o2) ->
+        {
+            return (o1.getName().compareTo(o2.getName()));
+        });
+
+        //adding the neighbors for all the nodes
+        n1.addNeighbor(n2, 10);
+        n1.addNeighbor(n3, 50);
+        n2.addNeighbor(n4, 20);
+        n2.addNeighbor(n5, 20);
+        n2.addNeighbor(n3, 20);
+        n3.addNeighbor(n4, 10);
+        n4.addNeighbor(n5, 30);
+        n4.addNeighbor(n6, 10);
+        n5.addNeighbor(n6, 20);
+
         myNetwork.printNetwork();
+
+        //testing the default method to get the capacity
+        Computer c1 = (Computer) n1;
+        System.out.println(c1.getStorageCapacity(Size.BYTE));
+
+        myNetwork.printIdentifiable();
+        myNetwork.solveAST();
     }
 }

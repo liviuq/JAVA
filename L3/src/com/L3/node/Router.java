@@ -26,8 +26,8 @@ public class Router extends Node implements Identifiable
     public String toString()
     {
         return "Router{" +
-                "name='" + name + '\'' +
-                ", macAddress='" + macAddress + '\'' +
+                "name='" + getName() + '\'' +
+                ", macAddress='" + getMacAddress() + '\'' +
                 ", ipAddress='" + ipAddress + '\'' +
                 '}';
     }
