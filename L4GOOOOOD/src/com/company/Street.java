@@ -1,8 +1,10 @@
 package com.company;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Street {
+public class Street implements Comparable<Street>
+{
 
     private String name;
     private float length;
@@ -69,5 +71,15 @@ public class Street {
                 ", intersection1=" + intersection1 +
                 ", intersection2=" + intersection2 +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Street o)
+    {
+        if (this.length < o.getLength())
+            return -1;
+        if (this.length == o.getLength())
+            return 0;
+        return 1;
     }
 }
