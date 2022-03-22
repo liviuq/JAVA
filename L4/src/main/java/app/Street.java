@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Street implements Comparable<Street>
 {
-
     private String name;
     private float length;
     private Intersection intersection1;
