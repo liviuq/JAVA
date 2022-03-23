@@ -9,7 +9,8 @@ public class Street implements Comparable<Street>
     private Intersection intersection1;
     private Intersection intersection2;
 
-    public Street(String name, float length, Intersection intersection1, Intersection intersection2) {
+    public Street(String name, float length, Intersection intersection1, Intersection intersection2)
+    {
         this.name = name;
         this.length = length;
         this.intersection1 = intersection1;

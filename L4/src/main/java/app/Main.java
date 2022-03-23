@@ -6,10 +6,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Main {
-
-    public static void main(String[] args) {
-
+public class Main
+{
+    public static void main(String[] args)
+    {
         //Starting our faker beautiful name generator
         Faker faker = new Faker();
 
@@ -47,13 +47,34 @@ public class Main {
             javangeles.addIntersection(intersection);
         }
 
-        //javangeles.addStreet(faker.address().streetName(), javangeles.getIntersection() );
+        //printing the intersections
+        javangeles.getIntersections()
+                .forEach(System.out::println);
+
+        javangeles.addStreet(faker.address().streetName(), 2, javangeles.getIntersection(0), javangeles.getIntersection(8));
+        javangeles.addStreet(faker.address().streetName(), 5, javangeles.getIntersection(0), javangeles.getIntersection(7));
+        javangeles.addStreet(faker.address().streetName(), 7, javangeles.getIntersection(0), javangeles.getIntersection(1));
+        javangeles.addStreet(faker.address().streetName(), 9, javangeles.getIntersection(8), javangeles.getIntersection(7));
+        javangeles.addStreet(faker.address().streetName(), 1, javangeles.getIntersection(1), javangeles.getIntersection(7));
+        javangeles.addStreet(faker.address().streetName(), 2, javangeles.getIntersection(8), javangeles.getIntersection(6));
+        javangeles.addStreet(faker.address().streetName(), 3, javangeles.getIntersection(7), javangeles.getIntersection(5));
+        javangeles.addStreet(faker.address().streetName(), 5, javangeles.getIntersection(7), javangeles.getIntersection(2));
+        javangeles.addStreet(faker.address().streetName(), 6, javangeles.getIntersection(6), javangeles.getIntersection(2));
+        javangeles.addStreet(faker.address().streetName(), 8, javangeles.getIntersection(6), javangeles.getIntersection(3));
+        javangeles.addStreet(faker.address().streetName(), 1, javangeles.getIntersection(6), javangeles.getIntersection(4));
+        javangeles.addStreet(faker.address().streetName(), 5, javangeles.getIntersection(5), javangeles.getIntersection(4));
+        javangeles.addStreet(faker.address().streetName(), 7, javangeles.getIntersection(5), javangeles.getIntersection(3));
+        javangeles.addStreet(faker.address().streetName(), 8, javangeles.getIntersection(4), javangeles.getIntersection(3));
+
+        //reading the length from the keyboard
+        Scanner scanner = new Scanner(System.in);
+        int streetLength = scanner.nextInt();
 
         //displaying the streets longer than a specified value
         //and join at least 3 streets
 
        javangeles.getStreets().stream()
-                .filter(length -> length.getLength() > 3)
+               .filter(street -> street.getLength() >= streetLength)
                 .forEach(System.out::println);
 
     }

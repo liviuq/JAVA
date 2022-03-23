@@ -5,13 +5,13 @@ import java.util.*;
 public class City
 {
     private String cityName;
-    private Set<Intersection> intersections;
+    private List<Intersection> intersections;
     private Set<Street> streets;
 
     public City(String cityName)
     {
         this.cityName = cityName;
-        intersections = new HashSet<>();
+        intersections = new LinkedList<>();
         streets = new HashSet<>();
     }
 
@@ -25,7 +25,7 @@ public class City
         this.cityName = cityName;
     }
 
-    public Set<Intersection> getIntersections()
+    public List<Intersection> getIntersections()
     {
         return intersections;
     }
@@ -40,14 +40,11 @@ public class City
         intersections.add(intersection);
     }
 
-    Intersection getIntersection(String name)
+    Intersection getIntersection(int position)
     {
-        for(Intersection intersection : intersections)
+        if(position >= 0 && position < intersections.size())
         {
-            if(intersection.getName().compareTo(name) > 0)
-            {
-                return  intersection;
-            }
+            return intersections.get(position);
         }
         return null;
     }
@@ -59,6 +56,8 @@ public class City
 
     void addStreet(String name, float length, Intersection intersection1, Intersection intersection2)
     {
+        if(intersection1 == intersection2)
+            return;
         streets.add(new Street(name, length, intersection1, intersection2));
     }
 
