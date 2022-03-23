@@ -1,6 +1,7 @@
 package app;
 
 import com.github.javafaker.Faker;
+import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -68,14 +69,14 @@ public class Main
 
         //reading the length from the keyboard
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the desired minimum street length");
         int streetLength = scanner.nextInt();
 
         //displaying the streets longer than a specified value
         //and join at least 3 streets
-
-       javangeles.getStreets().stream()
+        javangeles.getStreets().stream()
                .filter(street -> street.getLength() >= streetLength)
-                .forEach(System.out::println);
-
+               .filter(street -> street.getIntersection1().getNumberOfStreets() + street.getIntersection2().getNumberOfStreets() - 2 >= 3)
+               .forEach(System.out::println);
     }
 }

@@ -58,11 +58,15 @@ public class City
     {
         if(intersection1 == intersection2)
             return;
+        intersection1.addToStreet();
+        intersection2.addToStreet();
         streets.add(new Street(name, length, intersection1, intersection2));
     }
 
     void deleteStreet(Street street)
     {
+        street.getIntersection1().removeFromStreet();
+        street.getIntersection2().removeFromStreet();
         streets.remove(street);
     }
 }
