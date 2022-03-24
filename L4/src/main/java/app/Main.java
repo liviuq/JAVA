@@ -78,5 +78,11 @@ public class Main
                .filter(street -> street.getLength() >= streetLength)
                .filter(street -> street.getIntersection1().getNumberOfStreets() + street.getIntersection2().getNumberOfStreets() - 2 >= 3)
                .forEach(System.out::println);
+
+        //creating an instance of the problem
+        Problem problem = new Problem(javangeles);
+
+        //solving
+        problem.solve();
     }
 }
