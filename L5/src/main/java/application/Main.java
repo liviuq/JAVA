@@ -1,11 +1,11 @@
 package application;
 
-import application.command.AddCommand;
-import application.command.LoadCommand;
-import application.command.ReportCommand;
-import application.command.SaveCommand;
+import application.command.*;
 import application.exception.InvalidCatalogException;
 import freemarker.template.TemplateException;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 
@@ -54,5 +54,23 @@ public class Main
 
         //creating the report
         ReportCommand.report(books);
+
+        //the metadata from the html file
+
+        try
+        {
+            Metadata metadata = InfoCommand.info("web/output.html");
+
+            //printing the metadata
+            System.out.printf("%s\n%s\n",
+                    metadata.get("X-Parsed-By"),
+                    metadata.get("Author"));
+        }
+        catch (SAXException | TikaException e)
+        {
+            System.out.println(e);
+        }
+
+
     }
 }
