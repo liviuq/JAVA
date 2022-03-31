@@ -11,7 +11,5 @@ public abstract class Algorithm
      *  This method solves the problem problem and returns a Solution
      * @param problem
      */
-    public void solve(Problem problem)
-    {
-    }
+    public abstract void solve(Problem problem);
 }

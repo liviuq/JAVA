@@ -116,6 +116,14 @@ public class Network
             }
         }
 
+        for (int i = 0; i < totalNodes; i++)
+        {
+            for (int j = 0; j < totalNodes; j++)
+            {
+                System.out.printf("%d ", adjacencyMatrixWeighted[i][j]);
+            }
+            System.out.println("");
+        }
         //applying the algorithm
         //iterate through all the nodes while "relaxing" the nodes.
         //we do this relaxation totalNodes times and

@@ -1,9 +1,18 @@
 package application;
 
+import application.command.AddCommand;
+import application.command.InfoCommand;
+import application.command.LoadCommand;
+import application.command.SaveCommand;
 import application.exception.InvalidCatalogException;
 import application.exception.ItemNotFoundCatalogException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +21,12 @@ public class Catalog implements Serializable
     private String name;
     private List<Item> items;
 
+    public Catalog(){}
+
     public Catalog(String name)
     {
         this.name = name;
-        items = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
     public String getName()
@@ -26,6 +37,16 @@ public class Catalog implements Serializable
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public List<Item> getItems()
+    {
+        return items;
+    }
+
+    public void setItems(List<Item> items)
+    {
+        this.items = items;
     }
 
     public void add(Item item) throws InvalidCatalogException
@@ -47,6 +68,7 @@ public class Catalog implements Serializable
                 .findFirst()
                 .orElseThrow();
     }
+
 
     @Override
     public String toString() {

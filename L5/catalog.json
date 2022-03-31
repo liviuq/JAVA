@@ -1,0 +1,14 @@
+{
+  "name" : "My favourite books",
+  "items" : [ {
+    "id" : "981245",
+    "title" : "Quiet",
+    "location" : "i guess it s home",
+    "numberOfPages" : 244
+  }, {
+    "id" : "23445",
+    "title" : "Loud",
+    "location" : "home",
+    "numberOfPages" : 122
+  } ]
+}

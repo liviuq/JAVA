@@ -1,19 +1,17 @@
-package application;
+package application.command;
 
-import application.exception.InvalidCatalogException;
+import application.Catalog;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import java.io.File;
-import java.io.IOError;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class CatalogUtil
+public abstract class SaveCommand
 {
     public static void save(Catalog catalog, String path)
-                            throws IOException
+            throws IOException
     {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
@@ -22,16 +20,5 @@ public class CatalogUtil
                 Paths.get(path).toFile(),
                 catalog
         );
-    }
-
-    public static Catalog load(String path)
-            throws InvalidCatalogException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Catalog catalog = objectMapper.readValue(
-                new File(path),
-                Catalog.class
-        );
-
-        return catalog;
     }
 }

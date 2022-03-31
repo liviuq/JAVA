@@ -1,9 +1,12 @@
 package application;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Item implements Serializable
+@JsonDeserialize(as=Book.class)
+public class Item implements Serializable
 {
     private String id;
     private String title;
@@ -12,6 +15,7 @@ public abstract class Item implements Serializable
     //might be local or somewhere on the web
     private String location;
 
+    public Item(){}
     public Item(String id, String title, String location)
     {
         this.id = id;

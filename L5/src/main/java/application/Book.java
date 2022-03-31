@@ -1,10 +1,13 @@
 package application;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Book extends Item
+public class Book extends Item implements Serializable
 {
     private int numberOfPages;
+
+    public Book(){}
 
     public Book(String id, String title, String location, int numberOfPages)
     {
@@ -42,6 +45,9 @@ public class Book extends Item
     public String toString()
     {
         return "Book{" +
+                "id=" + super.getId() + " " +
+                "title=" + super.getTitle() + " " +
+                "location=" + super.getLocation() + " " +
                 "numberOfPages=" + numberOfPages +
                 '}';
     }
