@@ -56,8 +56,16 @@ public class DrawingPanel extends JPanel
             int y2 = y1;
             g.drawLine(x1, y1, x2, y2);
         }
-        //vertical lines TODO
+        //vertical lines
+        for (int col = 0; col < cols; col++)
+        {
+            int x1 = padY;
+            int y1 = padX + col * cellWidth;
+            int x2 = padY + boardHeight;
+            int y2 = y1;
 
+            g.drawLine(x1,y1,x2,y2);
+        }
         //intersections
         for (int row = 0; row < rows; row++)
         {
