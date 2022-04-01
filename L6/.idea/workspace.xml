@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86b1f205-9ebe-4121-9f2e-c2688a55f97f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ConfigPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ControlPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DrawingPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../L5/src/main/java/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../L5/src/main/java/application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../L5/src/main/java/application/command/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../L5/src/main/java/application/command/InfoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ConfigPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ConfigPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ConfigPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ConfigPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MainFrame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648796750710</updated>
-      <workItem from="1648796751952" duration="3286000" />
+      <workItem from="1648796751952" duration="4576000" />
     </task>
     <servers />
   </component>

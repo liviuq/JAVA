@@ -26,4 +26,14 @@ public class ConfigPanel extends JPanel
         add(spinner2);
         add(button);
     }
+
+    public int getRows()
+    {
+        return (Integer)spinner1.getValue();
+    }
+
+    public int getCols()
+    {
+        return (Integer)spinner2.getValue();
+    }
 }

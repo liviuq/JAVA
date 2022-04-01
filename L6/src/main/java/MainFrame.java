@@ -3,9 +3,9 @@ import java.awt.*;
 
 public class MainFrame extends JFrame
 {
-    ConfigPanel configPanel;
-    //ControlPanel controlPanel;
-    //DrawingPanel canvas;
+    ConfigPanel configPanel = new ConfigPanel(this);
+    ControlPanel controlPanel = new ControlPanel(this);
+    DrawingPanel canvas = new DrawingPanel(this);
 
     public MainFrame()
     {
@@ -18,13 +18,10 @@ public class MainFrame extends JFrame
         //what happens when an user wants to "close" the app
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //creating the components
-        //canvas = new DrawingPanel(this);
-        //controlPanel = new ControlPanel(this);
-        configPanel = new ConfigPanel(this);
-
         //arranging the components
-        add(configPanel, BorderLayout.CENTER);
+        add(configPanel, BorderLayout.NORTH);
+        add(canvas, BorderLayout.CENTER);
+        add(controlPanel, BorderLayout.SOUTH);
 
         pack();
     }
