@@ -9,13 +9,14 @@ public class MainFrame extends JFrame
 
     public MainFrame()
     {
+        //EDIT
         super("A cool game we can play");
         init();
     }
 
     private void init()
     {
-        //what happens when an user wants to "close" the app
+        //what happens when a user wants to "close" the app
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //arranging the components

@@ -17,6 +17,7 @@ public class ControlPanel extends JPanel
 
     private void init()
     {
+        //EDIT
         exit = new JButton("GET ME OUT OF HERE");
         load = new JButton("Load");
         save = new JButton("Save");
@@ -26,11 +27,13 @@ public class ControlPanel extends JPanel
         add(load);
         add(save);
 
+        //EDIT
         exit.addActionListener(this::exitGame);
         load.addActionListener(this::load);
         save.addActionListener(this::save);
     }
 
+    //EDIT
     private void save(ActionEvent actionEvent)
     {
         System.out.println("Ought to be implemented");

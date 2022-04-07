@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ConfigPanel extends JPanel
 {
@@ -19,6 +21,8 @@ public class ConfigPanel extends JPanel
         label = new JLabel("Settings for grid size");
         spinner1 = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
         spinner2 = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
+
+        //EDIT
         button = new JButton("Generate");
 
         add(label);
