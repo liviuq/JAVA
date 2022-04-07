@@ -8,13 +8,14 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 import static java.lang.Math.sqrt;
 
-public class DrawingPanel extends JPanel
+public class DrawingPanel extends JPanel implements Serializable
 {
     private final MainFrame frame;
 
@@ -230,5 +231,4 @@ public class DrawingPanel extends JPanel
         }
         return ret;
     }
-
 }

@@ -1,6 +1,14 @@
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class ControlPanel extends JPanel
 {
@@ -36,7 +44,27 @@ public class ControlPanel extends JPanel
     //EDIT
     private void save(ActionEvent actionEvent)
     {
-        System.out.println("Ought to be implemented");
+        System.out.println("[Saving...]");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+
+//        try
+//        {
+//            objectWriter.writeValue(
+//                    Paths.get("save").toFile(),
+//                    frame.canvas
+//            );
+//        }
+//        catch (StreamWriteException e) {
+//            e.printStackTrace();
+//        } catch (DatabindException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        System.out.println("[Saved!]");
     }
 
     private void load(ActionEvent actionEvent)
