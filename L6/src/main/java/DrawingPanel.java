@@ -2,12 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
+
+import static java.lang.Math.sqrt;
 
 public class DrawingPanel extends JPanel
 {
     private final MainFrame frame;
+    private Set<Point> knownLocations = new HashSet<>();
+    private Set<Point> markedLocations = new HashSet<>();
 
+    boolean color = false; //false - red, true - blue
     int rows, cols;
     int canvasWidth = 600, canvasHeight = 600;
     int boardWidth, boardHeight;
@@ -20,15 +29,48 @@ public class DrawingPanel extends JPanel
         this.frame = frame;
         init(frame.configPanel.getRows(), frame.configPanel.getCols());
 
-        //EDIT
         frame.configPanel.button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 init(frame.configPanel.getRows(), frame.configPanel.getCols());
+
+                //once we generate a new table, wipe previous marked positions
+                getMarkedLocations().clear();
+
                 frame.canvas.revalidate();
                 frame.canvas.repaint();
             }
         });
+
+        addMouseListener(
+                new MouseAdapter()
+                {
+                    @Override
+                    public void mouseClicked(MouseEvent e)
+                    {
+                        Point point = getClosestPointTo(e.getPoint());
+                        //if(!getMarkedLocations().contains(point))
+                        {
+                            //swap color
+                            getMarkedLocations().add(point);
+                            Graphics2D g = (Graphics2D) getGraphics();
+
+                            if(color)
+                            {
+                                g.setColor(Color.BLUE);
+                            }
+                            else
+                            {
+                                g.setColor(Color.RED);
+                            }
+                            color = !color;
+
+                            g.setStroke(new BasicStroke(10));
+                            g.drawOval(point.x - stoneSize / 2, point.y - stoneSize / 2, stoneSize, stoneSize);
+                        }
+                    }
+                }
+        );
     }
 
     final void init(int rows, int cols)
@@ -53,7 +95,14 @@ public class DrawingPanel extends JPanel
         g.fillRect(0, 0, canvasWidth, canvasHeight);
         paintGrid(g);
         paintSticks(g);
+
+        //stone painting is done in the mouse handler
         //paintStones(g);
+    }
+
+    public Set<Point> getMarkedLocations()
+    {
+        return markedLocations;
     }
 
     private void paintGrid(Graphics2D g)
@@ -70,7 +119,6 @@ public class DrawingPanel extends JPanel
             g.drawLine(x1, y1, x2, y2);
         }
 
-        //EDIT
         //vertical lines
         for (int col = 0; col < cols; col++)
         {
@@ -122,10 +170,30 @@ public class DrawingPanel extends JPanel
                             int x2 = x1 + dx * cellWidth;
                             int y2 = y1 + dy * cellHeight;
                             g.drawLine(x1, y1, x2, y2);
+                            knownLocations.add(new Point(x1, y1));
+                            knownLocations.add(new Point(x2, y2));
                         }
                     }
                 }
             }
         }
     }
+
+    public Point getClosestPointTo(Point point)
+    {
+        Point ret = new Point(0,0);
+        double minDistance = canvasWidth;
+        double temporaryDistance;
+        for(Point knownPoint : knownLocations)
+        {
+            temporaryDistance = sqrt((knownPoint.x - point.x)*(knownPoint.x - point.x) + (knownPoint.y - point.y)*(knownPoint.y - point.y));
+            if(temporaryDistance < minDistance)
+            {
+                minDistance = temporaryDistance;
+                ret = knownPoint;
+            }
+        }
+        return ret;
+    }
+
 }
