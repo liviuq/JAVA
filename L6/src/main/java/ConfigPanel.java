@@ -9,6 +9,7 @@ public class ConfigPanel extends JPanel
     JLabel label;
     JSpinner spinner1, spinner2;
     JButton button;
+    JButton saveAsPNG;
 
     public ConfigPanel(MainFrame frame)
     {
@@ -24,11 +25,13 @@ public class ConfigPanel extends JPanel
 
         //EDIT
         button = new JButton("Generate");
+        saveAsPNG = new JButton("Save as PNG");
 
         add(label);
         add(spinner1);
         add(spinner2);
         add(button);
+        add(saveAsPNG);
     }
 
     public int getRows()

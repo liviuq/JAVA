@@ -1,9 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -13,6 +17,7 @@ import static java.lang.Math.sqrt;
 public class DrawingPanel extends JPanel
 {
     private final MainFrame frame;
+
     private Set<Point> knownLocations = new HashSet<>();
     private Set<Point> markedLocations = new HashSet<>();
 
@@ -42,6 +47,24 @@ public class DrawingPanel extends JPanel
             }
         });
 
+        frame.configPanel.saveAsPNG.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+                Graphics2D g = image.createGraphics();
+                printAll(g);
+                try
+                {
+                    ImageIO.write(image, "png", new File("picture.png"));
+                }
+                catch (IOException exception)
+                {
+                    exception.printStackTrace();
+                }
+            }
+        });
+
         addMouseListener(
                 new MouseAdapter()
                 {
@@ -49,24 +72,30 @@ public class DrawingPanel extends JPanel
                     public void mouseClicked(MouseEvent e)
                     {
                         Point point = getClosestPointTo(e.getPoint());
-                        //if(!getMarkedLocations().contains(point))
+
+                        //if the desired location is valid(i.e. vertex
+                        //is adjacent with at least one edge
+                        if(!getMarkedLocations().contains(point))
                         {
-                            //swap color
-                            getMarkedLocations().add(point);
-                            Graphics2D g = (Graphics2D) getGraphics();
-
-                            if(color)
+                            if(getKnownLocations().contains(point))
                             {
-                                g.setColor(Color.BLUE);
-                            }
-                            else
-                            {
-                                g.setColor(Color.RED);
-                            }
-                            color = !color;
+                                //swap color
+                                getMarkedLocations().add(point);
+                                Graphics2D g = (Graphics2D) getGraphics();
 
-                            g.setStroke(new BasicStroke(10));
-                            g.drawOval(point.x - stoneSize / 2, point.y - stoneSize / 2, stoneSize, stoneSize);
+                                if(color)
+                                {
+                                    g.setColor(Color.BLUE);
+                                }
+                                else
+                                {
+                                    g.setColor(Color.RED);
+                                }
+                                color = !color;
+
+                                g.setStroke(new BasicStroke(10));
+                                g.drawOval(point.x - stoneSize / 2, point.y - stoneSize / 2, stoneSize, stoneSize);
+                            }
                         }
                     }
                 }
@@ -98,6 +127,11 @@ public class DrawingPanel extends JPanel
 
         //stone painting is done in the mouse handler
         //paintStones(g);
+    }
+
+    public Set<Point> getKnownLocations()
+    {
+        return knownLocations;
     }
 
     public Set<Point> getMarkedLocations()
@@ -172,6 +206,7 @@ public class DrawingPanel extends JPanel
                             g.drawLine(x1, y1, x2, y2);
                             knownLocations.add(new Point(x1, y1));
                             knownLocations.add(new Point(x2, y2));
+                            System.out.printf("Point: %d %d\n", x1/cellWidth, y1/cellHeight);
                         }
                     }
                 }
