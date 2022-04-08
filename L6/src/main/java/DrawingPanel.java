@@ -217,7 +217,9 @@ public class DrawingPanel extends JPanel implements Serializable
 
     public Point getClosestPointTo(Point point)
     {
+        //creating a default Point to return in case of human destruction
         Point ret = new Point(0,0);
+
         double minDistance = canvasWidth;
         double temporaryDistance;
         for(Point knownPoint : knownLocations)
