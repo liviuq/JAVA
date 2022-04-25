@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86b1f205-9ebe-4121-9f2e-c2688a55f97f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../L7/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/src/main/java/game/Bag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/src/main/java/game/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/src/main/java/game/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/src/main/java/game/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/src/main/java/game/Tile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../L7/src/main/java/game/exceptions/BagNoItemsRemaining.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DrawingPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DrawingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DrawingPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../watchapp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ControlPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../L7/pom.xml" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
@@ -92,6 +76,8 @@
       <workItem from="1648796751952" duration="5098000" />
       <workItem from="1649324484183" duration="14584000" />
       <workItem from="1649400747052" duration="3667000" />
+      <workItem from="1650286216303" duration="608000" />
+      <workItem from="1650901459155" duration="92000" />
     </task>
     <servers />
   </component>

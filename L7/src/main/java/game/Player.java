@@ -4,6 +4,8 @@ import game.exceptions.BagNoItemsRemaining;
 
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class Player implements Runnable
 {
     private String name;
@@ -16,30 +18,53 @@ public class Player implements Runnable
         this.id = id;
     }
 
-    private boolean submitWord()
+    public void setGame(Game game)
     {
+        this.game = game;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    private boolean submitWord() throws InterruptedException {
+        StringBuilder word = new StringBuilder();
+        List<Tile> extracted;
         try
         {
-            List<Tile> extracted = game.getBag().extractTiles(7);
+            extracted = game.getBag().extractTiles(5);
             if(extracted.isEmpty())
             {
                 return false;
             }
+            for( Tile tile : extracted)
+            {
+                word.append(tile.getLetter());
+            }
         }
         catch (BagNoItemsRemaining e)
         {
-            e.printStackTrace();
+            System.out.println("No more letters remaining in the bag.");
         }
 
-        
-
-        game.getBoard().addWord(this, word);
+        game.getBoard().addWord(this, word.toString());
+        sleep(50);
         return true;
     }
 
     @Override
     public void run()
     {
-
+        try {
+            submitWord();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -15,6 +15,7 @@ public class Board
     public synchronized void addWord(Player player, String word)
    {
        words.add(word);
+       System.out.println(player.getName() + ": " + word);
    }
 
     @Override

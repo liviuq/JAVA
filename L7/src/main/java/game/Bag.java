@@ -25,7 +25,7 @@ public class Bag
         }
     }
 
-    public List<Tile> extractTiles(int number) throws BagNoItemsRemaining
+    public synchronized List<Tile> extractTiles(int number) throws BagNoItemsRemaining
     {
         //creating a list of the to-be-extracted tiles
         List<Tile> extracted = new ArrayList<>();
@@ -40,7 +40,6 @@ public class Bag
             }
             extracted.add(letters.remove());
         }
-
         return extracted;
     }
 }

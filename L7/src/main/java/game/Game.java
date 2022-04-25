@@ -28,7 +28,7 @@ public class Game
         for(Player player : players)
         {
             //start a new thread
-            new Thread(player::run).start();
+            new Thread(player).start();
         }
     }
 
