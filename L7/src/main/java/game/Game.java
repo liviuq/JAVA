@@ -7,7 +7,7 @@ public class Game
 {
     private final Bag bag;
     private final Board board;
-    //private final Dictionary dictionary = new CoolDictionary();
+    private final Dictionary dictionary;
     private final List<Player> players;
 
     public Game()
@@ -15,6 +15,7 @@ public class Game
         bag = new Bag();
         board = new Board();
         players = new ArrayList<>();
+        dictionary = new Dictionary();
     }
 
     public void addPlayer(Player player)
@@ -51,5 +52,10 @@ public class Game
     public Board getBoard()
     {
         return this.board;
+    }
+
+    public Dictionary getDictionary()
+    {
+        return this.dictionary;
     }
 }

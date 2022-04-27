@@ -2,7 +2,9 @@ package game;
 
 import game.exceptions.BagNoItemsRemaining;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static java.lang.Thread.sleep;
 
@@ -10,12 +12,29 @@ public class Player implements Runnable
 {
     private String name;
     private int id;
+    private int points;
+    private List<Tile> tiles;
     private Game game;
 
     public Player(String name, int id)
     {
         this.name = name;
         this.id = id;
+        this.points = 0;
+
+        this.tiles = new ArrayList<>();
+
+        //draw 7 tiles
+        try
+        {
+            //wait
+            while(game == null);
+            tiles.addAll(game.getBag().extractTiles(7));
+        }
+        catch (BagNoItemsRemaining e)
+        {
+            System.out.println("No tiles remaining");
+        }
     }
 
     public void setGame(Game game)
@@ -33,27 +52,50 @@ public class Player implements Runnable
         this.name = name;
     }
 
-    private boolean submitWord() throws InterruptedException {
-        StringBuilder word = new StringBuilder();
-        List<Tile> extracted;
+    public void drawTiles(int numberOfNewTiles)
+    {
         try
         {
-            extracted = game.getBag().extractTiles(5);
-            if(extracted.isEmpty())
-            {
-                return false;
-            }
-            for( Tile tile : extracted)
-            {
-                word.append(tile.getLetter());
-            }
+            tiles.addAll(game.getBag().extractTiles(numberOfNewTiles));
         }
         catch (BagNoItemsRemaining e)
         {
-            System.out.println("No more letters remaining in the bag.");
+            System.out.println("No tiles remaining");
+        }
+    }
+
+    private boolean submitWord() throws InterruptedException
+    {
+        StringBuilder word = new StringBuilder();
+
+        //create a word based on your available tiles
+
+        //if not, discard your letters and draw 7 new ones
+
+
+        //check to see if word exists
+        if(game.getDictionary().isWord(word.toString()))
+        {
+            //submit word
+            game.getBoard().addWord(this, word.toString());
+
+            //calculate and update player score
+            for(int i = 0; i < word.length(); i++)
+            {
+                this.points += (game.getBag().getTilePoints(word.charAt(i))) * word.length();
+            }
+
+            //draw remainig tiles
+            try
+            {
+                tiles.addAll(game.getBag().extractTiles(word.length()));
+            }
+            catch (BagNoItemsRemaining e)
+            {
+                System.out.println("No tiles remaining");
+            }
         }
 
-        game.getBoard().addWord(this, word.toString());
         sleep(50);
         return true;
     }
@@ -62,8 +104,13 @@ public class Player implements Runnable
     public void run()
     {
         try {
-            submitWord();
-        } catch (InterruptedException e) {
+            if(!submitWord())
+            {
+                System.out.println("Empty bag");
+            }
+        }
+        catch (InterruptedException e)
+        {
             e.printStackTrace();
         }
     }
