@@ -11,7 +11,8 @@ public class ContinentDAO
                     "insert into continents values (?,?)");
             query.setString(1, name);
             query.setInt(2, getMaxId());
-            query.executeUpdate();
+            int row = query.executeUpdate();
+            System.out.printf("[SERVER] Rows affected: %d\n", row);
         }
         catch (SQLException e)
         {
