@@ -52,7 +52,7 @@ public class Player implements Runnable
         this.name = name;
     }
 
-    public void drawTiles(int numberOfNewTiles)
+    public synchronized void drawTiles(int numberOfNewTiles)
     {
         try
         {
@@ -93,6 +93,7 @@ public class Player implements Runnable
             catch (BagNoItemsRemaining e)
             {
                 System.out.println("No tiles remaining");
+                return false;
             }
         }
 
@@ -103,15 +104,21 @@ public class Player implements Runnable
     @Override
     public void run()
     {
-        try {
-            if(!submitWord())
-            {
-                System.out.println("Empty bag");
-            }
-        }
-        catch (InterruptedException e)
+        boolean running = true;
+        while(running)
         {
-            e.printStackTrace();
+            try
+            {
+                running = submitWord();
+                if(!running)
+                {
+                    System.out.println("Empty bag");
+                }
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }

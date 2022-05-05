@@ -2,18 +2,16 @@ package game;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-public class Dictionary
+public class Dictionary implements MockDictionary
 {
-    private List<String> dictionary;
+    private Set<String> dictionary;
 
     public Dictionary()
     {
         //instantiating the dictionary
-        dictionary = new ArrayList<>();
+        dictionary = new HashSet<>();
 
         //declaring our scanner
         Scanner scanner = null;
@@ -41,30 +39,32 @@ public class Dictionary
 
     public boolean isWord(String word)
     {
-        //search for word in dictionary using binary search
-        int left = 0, right = dictionary.size() - 1;
+//        //search for word in dictionary using binary search
+//        int left = 0, right = dictionary.size() - 1;
+//
+//        while(left <= right)
+//        {
+//            int middle = left + (right - left) / 2;
+//
+//            int comparationResult = word.compareTo(dictionary.get(middle));
+//
+//            if(comparationResult > 0)
+//            {
+//                left = middle + 1;
+//            }
+//            else
+//            {
+//                right = middle - 1;
+//            }
+//
+//            if(comparationResult == 0)
+//            {
+//                return true;
+//            }
+//        }
+//        //wasn t found
+//        return false;
 
-        while(left <= right)
-        {
-            int middle = left + (right - left) / 2;
-
-            int comparationResult = word.compareTo(dictionary.get(middle));
-
-            if(comparationResult > 0)
-            {
-                left = middle + 1;
-            }
-            else
-            {
-                right = middle - 1;
-            }
-
-            if(comparationResult == 0)
-            {
-                return true;
-            }
-        }
-        //wasn t found
-        return false;
+        return dictionary.contains(word);
     }
 }
