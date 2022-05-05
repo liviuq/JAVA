@@ -61,7 +61,7 @@ public class ContinentDAO
         }
 
         assert result != null;
-        return result.next() ? result.getString(1) : "inexistent";
+        return result.next() ? result.getString(1) : "nonexistent";
     }
 
     private Integer getMaxId() throws SQLException

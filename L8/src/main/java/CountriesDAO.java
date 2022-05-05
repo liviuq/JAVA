@@ -5,21 +5,23 @@ import java.sql.SQLException;
 
 public class CountriesDAO
 {
-    public void create (String name) throws SQLException
+    public void create (String name, String code, String continent) throws SQLException
     {
         Connection connection = Database.getConnection();
         try
         {
             PreparedStatement query = connection.prepareStatement(
-                    "insert into continents values (?,?)");
+                    "insert into countries values (?,?,?,?)");
             query.setInt(1, getMaxId());
             query.setString(2, name);
+            query.setString(3, code);
+            query.setString(4, continent);
             int row = query.executeUpdate();
-            System.out.printf("[SERVER] Rows affected: %d\n", row);
+            //System.out.printf("[SERVER] Rows affected: %d\n", row);
         }
         catch (SQLException e)
         {
-            System.out.printf("[CONNECTION ERROR] Couldn't create continent: %s\n", e);
+            System.out.printf("[CONNECTION ERROR] Couldn't create country: %s\n", e);
         }
     }
 
@@ -30,15 +32,14 @@ public class CountriesDAO
         try
         {
             PreparedStatement query = connection.prepareStatement(
-                    "select id from continents where name = ?"
+                    "select id from countries where name = ?"
             );
             query.setString(1, name);
             result = query.executeQuery();
-
         }
         catch (SQLException e)
         {
-            System.out.printf("[CONNECTION ERROR] Couldn't retrieve continent ID: %s\n", e);
+            System.out.printf("[CONNECTION ERROR] Couldn't retrieve country ID: %s\n", e);
         }
 
         assert result != null;
@@ -52,19 +53,18 @@ public class CountriesDAO
         try
         {
             PreparedStatement query = connection.prepareStatement(
-                    "select name from continents where id = ?"
+                    "select name from countries where id = ?"
             );
             query.setInt(1, id);
             result = query.executeQuery();
-
         }
         catch (SQLException e)
         {
-            System.out.printf("[CONNECTION ERROR] Couldn't retrieve continent ID: %s\n", e);
+            System.out.printf("[CONNECTION ERROR] Couldn't retrieve country ID: %s\n", e);
         }
 
         assert result != null;
-        return result.next() ? result.getString(1) : "inexistent";
+        return result.next() ? result.getString(1) : "nonexistent country";
     }
 
     private Integer getMaxId() throws SQLException
@@ -74,14 +74,13 @@ public class CountriesDAO
         try
         {
             PreparedStatement query = connection.prepareStatement(
-                    "select max(id) from continents"
+                    "select max(id) from countries"
             );
             result = query.executeQuery();
-
         }
         catch (SQLException e)
         {
-            System.out.printf("[CONNECTION ERROR] Couldn't retrieve continent ID: %s\n", e);
+            System.out.printf("[CONNECTION ERROR] Couldn't retrieve maximum country ID: %s\n", e);
         }
 
         assert result != null;
