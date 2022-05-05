@@ -1,6 +1,9 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ContinentDAO
+public class CountriesDAO
 {
     public void create (String name) throws SQLException
     {
