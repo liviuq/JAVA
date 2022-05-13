@@ -9,7 +9,8 @@ import java.net.Socket;
 public class ClientThread
 {
     private Socket socket = null ;
-    public ClientThread(Socket socket) { this.socket = socket ; }
+    private Server server = null;
+    public ClientThread(Socket socket, Server server) { this.socket = socket ;  this.server = server;}
     public void run () {
         try {
             // Get the request from the input stream: client → server
@@ -19,6 +20,10 @@ public class ClientThread
             // Send the response to the oputput stream: server → client
             PrintWriter out = new PrintWriter(socket.getOutputStream());
             String raspuns = "Hello " + request + "!";
+            if(request.compareTo("quit") == 0)
+            {
+                server.setRunning(false);
+            }
             out.println(raspuns);
             out.flush();
         } catch (IOException e) {

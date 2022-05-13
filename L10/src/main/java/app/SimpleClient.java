@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class SimpleClient {
     public static void main (String[] args) throws IOException {
@@ -17,11 +18,15 @@ public class SimpleClient {
                         new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader (
                         new InputStreamReader(socket.getInputStream())) ) {
-            // Send a request to the server
-            String request = "World";
+
+            //read from the keyboard the request
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("[CLIENT] Enter a command:");
+            String request = keyboard.nextLine();
+
             out.println(request);
             // Wait the response from the server ("Hello World!")
-            String response = in.readLine ();
+            String response = in.readLine();
             System.out.println(response);
         } catch (UnknownHostException e) {
             System.err.println("No server listening... " + e);
